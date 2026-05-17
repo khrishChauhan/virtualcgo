@@ -107,27 +107,55 @@ export default function PricingSection() {
             <div className="absolute -inset-2 bg-gradient-to-tr from-[#abc4ff]/20 to-[#c1d3fe]/10 rounded-[2.5rem] blur-2xl opacity-70 pointer-events-none -z-10" />
 
             <div 
-              className="flex-1 bg-white border border-[#c1d3fe]/60 rounded-[2.25rem] p-8 sm:p-10 flex flex-col transition-all duration-300 hover:border-[#abc4ff] hover:shadow-[0_24px_50px_rgba(193,211,254,0.25)] relative overflow-hidden"
+              className="flex-1 bg-white border border-[#c1d3fe]/65 rounded-[2.25rem] p-8 sm:p-10 flex flex-col transition-all duration-300 hover:border-[#abc4ff] hover:shadow-[0_24px_50px_rgba(193,211,254,0.3)] relative overflow-hidden group/card"
               style={{
                 boxShadow: "0 4px 30px rgba(193, 211, 254, 0.12), inset 0 1px 0 rgba(255,255,255,0.9)",
               }}
             >
+              {/* Soft animated glow border overlay on hover */}
+              <div className="absolute inset-0 border border-blue-400/20 rounded-[2.25rem] opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
               {/* Card Ribbon/Badge */}
-              <div className="absolute top-6 right-6">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#edf2fb] border border-[#c1d3fe]/50 text-[10px] font-bold text-blue-600 tracking-wider uppercase">
+              <div className="absolute top-6 right-6 z-20">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-blue-50/90 to-[#edf2fb]/90 border border-blue-200 text-[10px] font-bold text-blue-600 tracking-wider uppercase backdrop-blur-md shadow-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-                  Limited Offer
+                  OFFER LIVE
                 </span>
               </div>
 
-              <div className="mb-8">
+              <div className="mb-6">
                 <h3 className="text-slate-900 font-bold text-[22px] tracking-tight mb-2">Essential</h3>
                 <p className="text-slate-400 text-[13.5px] leading-relaxed font-medium">All the core tools to kickstart your premium digital storefront today.</p>
               </div>
 
-              <div className="mb-8 flex items-baseline gap-2">
-                <span className="text-slate-900 font-bold tracking-[-0.04em] text-[3.25rem] leading-none">₹499</span>
-                <span className="text-slate-400 font-medium text-[14px]">one-time</span>
+              {/* Pricing area with spotlight glow and premium visual layout */}
+              <div className="mb-8 flex flex-col gap-2 relative">
+                {/* Spotlight glow behind price */}
+                <div className="absolute -left-6 -top-6 w-36 h-24 bg-blue-400/10 rounded-full blur-2xl pointer-events-none" />
+                
+                {/* Original crossed-out price */}
+                <div className="flex items-center gap-2 relative z-10">
+                  <span className="text-slate-400 font-medium line-through text-[16px]">₹7,999</span>
+                  <span className="text-slate-400 font-bold text-[9px] uppercase tracking-wider bg-slate-100 border border-slate-200/50 rounded px-1.5 py-0.5">Original</span>
+                </div>
+                
+                {/* Offer price with large bold blue gradient */}
+                <div className="flex items-baseline gap-2 relative z-10">
+                  <span className="bg-gradient-to-r from-blue-700 via-blue-600 to-[#abc4ff] bg-clip-text text-transparent font-extrabold tracking-[-0.04em] text-[3.5rem] leading-none">
+                    ₹4,999
+                  </span>
+                  <span className="text-slate-400 font-medium text-[13px]">one-time</span>
+                </div>
+                
+                {/* Offer details strip */}
+                <div className="flex flex-col gap-1 mt-1 relative z-10">
+                  <div className="text-[12.5px] font-bold text-blue-600 uppercase tracking-widest">
+                    Limited Time Offer
+                  </div>
+                  <div className="text-[12.5px] text-slate-500 font-medium flex items-center gap-1.5">
+                    Save <span className="text-emerald-600 font-bold bg-emerald-50 border border-emerald-100 px-1.5 py-0.5 rounded">₹3,000</span> today
+                  </div>
+                </div>
               </div>
 
               <div className="h-px w-full bg-gradient-to-r from-[#c1d3fe]/40 via-[#c1d3fe]/20 to-transparent mb-8" />
@@ -150,7 +178,7 @@ export default function PricingSection() {
               <div className="flex flex-wrap gap-2 mb-8 pt-2">
                 {smallTags.map((tag, i) => (
                   <span key={i} className="inline-flex items-center gap-1 text-[11px] font-medium text-blue-600/90 bg-[#edf2fb] px-2.5 py-1 rounded-md border border-[#c1d3fe]/30">
-                    <span className="w-1 h-1 rounded-full bg-blue-500" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
                     {tag}
                   </span>
                 ))}
@@ -159,11 +187,14 @@ export default function PricingSection() {
               {/* BUTTON */}
               <a
                 href="#contact"
-                className="w-full relative py-4 rounded-xl font-bold text-[14.5px] text-center text-white bg-blue-600 hover:bg-blue-700 transition-all duration-200 overflow-hidden shadow-[0_8px_24px_rgba(37,99,235,0.2)] hover:shadow-[0_12px_30px_rgba(37,99,235,0.3)] hover:-translate-y-[1px] active:translate-y-0 active:scale-[0.98] group"
+                className="w-full relative py-4 rounded-xl font-bold text-[14.5px] text-center text-white bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600 hover:from-blue-700 hover:via-blue-600 hover:to-blue-700 transition-all duration-300 overflow-hidden shadow-[0_4px_16px_rgba(37,99,235,0.25)] hover:shadow-[0_8px_32px_rgba(37,99,235,0.4)] hover:-translate-y-[1px] active:translate-y-0 active:scale-[0.98] group/btn flex items-center justify-center gap-1.5"
               >
                 <span className="relative z-10">Get Started</span>
+                <svg className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover/btn:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
                 {/* Subtle soft gradient reflection shimmer */}
-                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer pointer-events-none" />
+                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:animate-shimmer pointer-events-none" />
               </a>
             </div>
           </motion.div>

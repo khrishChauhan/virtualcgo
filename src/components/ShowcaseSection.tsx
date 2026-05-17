@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef } from "react";
 import { useInView } from "framer-motion";
+import Image from "next/image";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -126,7 +127,7 @@ function DemoCard({ demo, index }: { demo: typeof websiteDemos[0]; index: number
       {/* Preview area */}
       <div className="h-36 overflow-hidden relative">
         {demo.image ? (
-          <img src={demo.image} alt={demo.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+          <Image src={demo.image} alt={demo.name} fill className="object-cover object-top transition-transform duration-500 group-hover:scale-105" />
         ) : (
           <WebsitePreview gradient={demo.gradient} />
         )}

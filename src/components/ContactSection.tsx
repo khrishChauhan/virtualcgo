@@ -105,7 +105,7 @@ export default function ContactSection() {
               </p>
             </div>
 
-            {contactCards.map((c, i) => (
+            {contactCards.map((c) => (
               <motion.a
                 key={c.id}
                 id={c.id}
