@@ -4,27 +4,27 @@ import { motion } from "framer-motion";
 
 const barHeights = [35, 48, 42, 58, 52, 68, 78, 92];
 
-const floatVariant = {
+export const floatVariant = {
   initial: { y: 0 },
   animate: {
     y: [-12, 0, -12],
-    transition: { duration: 5, ease: "easeInOut", repeat: Infinity },
+    transition: { duration: 5, ease: "easeInOut" as const, repeat: Infinity },
   },
 };
 
-const floatDelayedVariant = {
+export const floatDelayedVariant = {
   initial: { y: 0 },
   animate: {
     y: [0, -16, 0],
-    transition: { duration: 7, ease: "easeInOut", repeat: Infinity, delay: 1.5 },
+    transition: { duration: 7, ease: "easeInOut" as const, repeat: Infinity, delay: 1.5 },
   },
 };
 
-const floatSmallVariant = {
+export const floatSmallVariant = {
   initial: { y: 0 },
   animate: {
     y: [-8, 0, -8],
-    transition: { duration: 4.5, ease: "easeInOut", repeat: Infinity, delay: 0.8 },
+    transition: { duration: 4.5, ease: "easeInOut" as const, repeat: Infinity, delay: 0.8 },
   },
 };
 

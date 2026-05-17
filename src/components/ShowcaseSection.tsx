@@ -14,7 +14,7 @@ const websiteDemos = [
     url: "astrobibhashmishra.com",
     link: "https://www.astrobibhashmishra.com/",
     description: "Vedic astrology consultation website with booking system and service catalogue.",
-    image: "https://image.thum.io/get/width/1000/crop/800/https://www.astrobibhashmishra.com/",
+    image: "/images/astro_hero.png",
     gradient: "from-indigo-900 via-blue-900 to-amber-700",
     categoryColor: "text-indigo-600",
     categoryBg: "bg-indigo-50",
@@ -263,7 +263,7 @@ export default function ShowcaseSection() {
           </div>
 
           <h2 className="text-[2.4rem] sm:text-[2.8rem] lg:text-[3rem] font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-4">
-            See What We've{" "}
+            See What We&apos;ve{" "}
             <span className="gradient-text">Already Built</span>
           </h2>
 
