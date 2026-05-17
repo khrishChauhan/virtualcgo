@@ -14,6 +14,7 @@ const websiteDemos = [
     url: "astrobibhashmishra.com",
     link: "https://www.astrobibhashmishra.com/",
     description: "Vedic astrology consultation website with booking system and service catalogue.",
+    image: "https://image.thum.io/get/width/1000/crop/800/https://www.astrobibhashmishra.com/",
     gradient: "from-indigo-900 via-blue-900 to-amber-700",
     categoryColor: "text-indigo-600",
     categoryBg: "bg-indigo-50",
@@ -157,8 +158,12 @@ function DemoCard({ demo, index }: { demo: typeof websiteDemos[0]; index: number
       </div>
 
       {/* Preview area */}
-      <div className="h-36 overflow-hidden">
-        <WebsitePreview gradient={demo.gradient} />
+      <div className="h-36 overflow-hidden relative">
+        {demo.image ? (
+          <img src={demo.image} alt={demo.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+        ) : (
+          <WebsitePreview gradient={demo.gradient} />
+        )}
       </div>
 
       {/* Card footer */}
