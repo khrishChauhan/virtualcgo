@@ -94,7 +94,7 @@ export default function PricingSection() {
         </motion.div>
 
         {/* ── CARDS GRID ── */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch mb-24">
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
 
           {/* ── ESSENTIAL CARD (ACTIVE) ── */}
           <motion.div
@@ -225,44 +225,6 @@ export default function PricingSection() {
           </motion.div>
 
         </div>
-
-        {/* ── TESTIMONIAL CARD ── */}
-        <motion.div
-          variants={fadeUp(0.3)}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="max-w-2xl mx-auto"
-        >
-          <div 
-            className="bg-white/80 border border-[#c1d3fe]/40 rounded-[2rem] p-8 sm:p-10 text-center relative overflow-hidden backdrop-blur-md"
-            style={{
-              boxShadow: "0 10px 40px rgba(193, 211, 254, 0.1), inset 0 1px 0 rgba(255,255,255,0.8)",
-            }}
-          >
-            {/* Mini internal subtle glowing ambient spot */}
-            <div className="absolute -top-12 -left-12 w-28 h-28 bg-[#c1d3fe]/30 rounded-full blur-xl pointer-events-none -z-10" />
-
-            {/* Stars */}
-            <div className="flex justify-center gap-1 mb-5">
-              {[...Array(5)].map((_, i) => (
-                <svg key={i} width="16" height="16" viewBox="0 0 20 20" fill="#f59e0b" className="flex-shrink-0">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
-            </div>
-
-            {/* Quote */}
-            <p className="text-slate-700 text-[15.5px] sm:text-[16px] leading-[1.7] italic font-medium tracking-tight mb-5 max-w-lg mx-auto">
-              &ldquo;Virtual CGO delivered a flawless GMB setup and landing page in under 24 hours. The automated WhatsApp setup saves us hours of follow-ups.&rdquo;
-            </p>
-
-            {/* Author */}
-            <div className="flex flex-col items-center">
-              <span className="text-slate-800 font-bold text-[13.5px]">Sarah J.</span>
-              <span className="text-slate-400 font-medium text-[11px] tracking-wider uppercase mt-0.5">Tech Founder</span>
-            </div>
-          </div>
-        </motion.div>
 
       </div>
     </section>

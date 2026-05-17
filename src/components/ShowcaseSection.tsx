@@ -27,6 +27,7 @@ const websiteDemos = [
     url: "dashboard.app",
     link: "#",
     description: "Institution management platform for schools and colleges.",
+    image: "/images/college-mgmt.png",
     gradient: "from-slate-800 via-blue-900 to-cyan-700",
     categoryColor: "text-blue-600",
     categoryBg: "bg-blue-50",
@@ -39,45 +40,10 @@ const websiteDemos = [
     url: "studiomira.com",
     link: "#",
     description: "Modern portfolio for creative agencies and designers.",
+    image: "/images/studio-mira.png",
     gradient: "from-violet-500 via-purple-400 to-fuchsia-400",
     categoryColor: "text-violet-600",
     categoryBg: "bg-violet-50",
-    buttonText: "View Demo"
-  },
-  {
-    id: "demo-noir-apparel",
-    name: "Noir Apparel",
-    category: "Clothing Brand",
-    url: "noiapparel.com",
-    link: "#",
-    description: "E-commerce store with minimal premium branding.",
-    gradient: "from-slate-700 via-slate-600 to-slate-800",
-    categoryColor: "text-slate-600",
-    categoryBg: "bg-slate-100",
-    buttonText: "View Demo"
-  },
-  {
-    id: "demo-brew-co",
-    name: "Brew & Co.",
-    category: "Cafe Landing",
-    url: "brewco.com",
-    link: "#",
-    description: "Landing page for local cafes and coffee shops.",
-    gradient: "from-amber-400 via-orange-400 to-rose-400",
-    categoryColor: "text-amber-600",
-    categoryBg: "bg-amber-50",
-    buttonText: "View Demo"
-  },
-  {
-    id: "demo-lumen-realty",
-    name: "Lumen Realty",
-    category: "Real Estate",
-    url: "lumenrealty.com",
-    link: "#",
-    description: "Property listing website with advanced search filters.",
-    gradient: "from-blue-400 via-sky-400 to-cyan-500",
-    categoryColor: "text-sky-600",
-    categoryBg: "bg-sky-50",
     buttonText: "View Demo"
   },
 ];
@@ -236,7 +202,7 @@ export default function ShowcaseSection() {
   const isInView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section id="portfolio" ref={ref} className="relative py-24 lg:py-32 overflow-hidden">
+    <section id="work" ref={ref} className="relative py-24 lg:py-32 overflow-hidden">
 
       {/* Background */}
       <div className="absolute inset-0 -z-10">
