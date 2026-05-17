@@ -3,211 +3,187 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
+const fadeUp = (delay = 0) => ({
+  hidden:   { opacity: 0, y: 22 },
+  visible:  { opacity: 1, y: 0, transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] as const } },
+});
+
 const features = [
   {
-    id: "feature-fast-delivery",
-    title: "Fast Delivery",
-    description: "Get your business online within 24 hours.",
+    id: "feat-fast",
     icon: (
-      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2}
-          d="M13 10V3L4 14h7v7l9-11h-7z" />
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M10 2.5L3 11.5H9.5L9 17.5L17 8.5H10.5L10 2.5Z" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
-    gradient: "from-blue-600 to-blue-400",
-    glow: "rgba(59,130,246,0.18)",
-    detail: "24h turnaround",
+    title: "24h Turnaround",
+    desc: "From brief to live website in as little as one business day.",
+    color: "#2563eb",
+    bg:    "#edf2fb",
+    pill:  "Fast delivery",
   },
   {
-    id: "feature-premium-branding",
-    title: "Premium Branding",
-    description: "Modern logos, app icons, and brand identity included.",
+    id: "feat-brand",
     icon: (
-      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2}
-          d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <circle cx="10" cy="10" r="7.5" stroke="currentColor" strokeWidth="1.6"/>
+        <path d="M6 10L9 13L14 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
-    gradient: "from-indigo-600 to-blue-500",
-    glow: "rgba(99,102,241,0.16)",
-    detail: "Full brand kit",
+    title: "Full Brand Kit",
+    desc: "Logo, app icon, colours, and typography — all in one cohesive system.",
+    color: "#7c3aed",
+    bg:    "#f3f0ff",
+    pill:  "Included",
   },
   {
-    id: "feature-mobile-optimized",
-    title: "Mobile Optimized",
-    description: "Perfect responsive experience across all devices.",
+    id: "feat-mobile",
     icon: (
-      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2}
-          d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <rect x="6" y="2.5" width="8" height="15" rx="1.5" stroke="currentColor" strokeWidth="1.6"/>
+        <circle cx="10" cy="15.5" r="0.7" fill="currentColor"/>
       </svg>
     ),
-    gradient: "from-sky-500 to-blue-400",
-    glow: "rgba(14,165,233,0.16)",
-    detail: "100% responsive",
+    title: "Mobile-First Design",
+    desc: "Every site is pixel-perfect across phones, tablets, and desktops.",
+    color: "#0891b2",
+    bg:    "#ecfeff",
+    pill:  "Responsive",
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.13 } },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 36 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const },
-  },
-};
-
-const headerVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
-  },
-};
-
 export default function FeaturesSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const ref      = useRef<HTMLElement>(null);
+  const inView   = useInView(ref, { once: true, margin: "-80px" });
 
   return (
     <section
       id="services"
       ref={ref}
-      className="relative py-24 lg:py-32 overflow-hidden"
+      className="relative py-28 lg:py-36 overflow-hidden"
+      style={{ background: "linear-gradient(180deg, #f7f9ff 0%, #edf2fb 60%, #f7f9ff 100%)" }}
     >
-      {/* ── Background ── */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#f8faff] via-[#eef4ff] to-[#f8faff]" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-blue-200/20 rounded-full blur-[100px]" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[300px] bg-indigo-200/15 rounded-full blur-[80px]" />
+      {/* Ambient blobs */}
+      <div className="absolute inset-0 pointer-events-none -z-10">
+        <div
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] opacity-60"
+          style={{ background: "radial-gradient(ellipse at center top, rgba(193,211,254,0.5) 0%, transparent 65%)" }}
+        />
+        <div
+          className="absolute bottom-0 right-0 w-[500px] h-[300px] opacity-40"
+          style={{ background: "radial-gradient(ellipse at right bottom, rgba(171,196,255,0.4) 0%, transparent 65%)" }}
+        />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
-        {/* ── Section Header ── */}
+        {/* Header */}
         <motion.div
-          variants={containerVariants}
+          variants={fadeUp()}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="text-center mb-16"
+          animate={inView ? "visible" : "hidden"}
+          className="text-center mb-20"
         >
-          {/* Label */}
-          <motion.div variants={headerVariants} className="inline-flex mb-5">
-            <span className="inline-flex items-center gap-2 text-blue-600 text-[13px] font-semibold tracking-widest uppercase bg-blue-50 border border-blue-100 rounded-full px-4 py-1.5">
-              <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-              </svg>
-              Why Us
-            </span>
-          </motion.div>
+          <span className="inline-flex items-center gap-2 text-blue-600 text-[12.5px] font-semibold tracking-[0.08em] uppercase bg-[#edf2fb] border border-[#c1d3fe]/70 rounded-full px-4 py-1.5 mb-5">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+              <path d="M6 1L7.5 4.5H11L8.25 6.75L9.25 10.25L6 8.25L2.75 10.25L3.75 6.75L1 4.5H4.5L6 1Z"/>
+            </svg>
+            What We Do
+          </span>
 
-          {/* Heading */}
-          <motion.h2
-            variants={headerVariants}
-            className="text-[2.4rem] sm:text-[2.8rem] lg:text-[3rem] font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-5"
+          <h2
+            className="font-bold text-slate-900 tracking-[-0.025em] leading-[1.1] mb-5"
+            style={{ fontSize: "clamp(2rem, 4vw, 2.9rem)" }}
           >
-            Built for{" "}
-            <span className="gradient-text">Modern Businesses</span>
-          </motion.h2>
+            Everything your business{" "}
+            <span className="gradient-text">needs to grow</span>
+          </h2>
 
-          {/* Subtitle */}
-          <motion.p
-            variants={headerVariants}
-            className="text-slate-500 text-lg leading-relaxed max-w-xl mx-auto"
-          >
-            Everything you need to launch your online presence professionally.
-          </motion.p>
+          <p className="text-slate-500 text-[17px] leading-relaxed max-w-[480px] mx-auto">
+            A complete digital foundation — not just a website.
+          </p>
         </motion.div>
 
-        {/* ── Feature Cards ── */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {features.map((feature) => (
+        {/* Cards */}
+        <div className="grid md:grid-cols-3 gap-6">
+          {features.map((f, i) => (
             <motion.div
-              key={feature.id}
-              id={feature.id}
-              variants={cardVariants}
-              whileHover={{ y: -6, scale: 1.015 }}
-              transition={{ type: "spring", stiffness: 280, damping: 22 }}
-              className="group relative bg-white/80 backdrop-blur-md border border-slate-200/60 rounded-3xl p-8 shadow-card hover:shadow-card-hover hover:border-blue-200/60 transition-shadow duration-300 overflow-hidden cursor-default"
+              key={f.id}
+              id={f.id}
+              variants={fadeUp(0.1 + i * 0.1)}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              whileHover={{ y: -6, scale: 1.012 }}
+              transition={{ type: "spring", stiffness: 300, damping: 24 }}
+              className="group relative bg-white/85 backdrop-blur-md border border-slate-200/60 rounded-3xl p-8 overflow-hidden cursor-default"
+              style={{
+                boxShadow: "0 1px 3px rgba(0,0,0,0.04), 0 4px 20px rgba(100,116,139,0.07), inset 0 1px 0 rgba(255,255,255,0.9)",
+              }}
             >
-              {/* Card glow on hover */}
+              {/* Hover glow */}
               <div
                 className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                style={{
-                  background: `radial-gradient(ellipse at 30% 20%, ${feature.glow} 0%, transparent 65%)`,
-                }}
+                style={{ background: `radial-gradient(ellipse at 25% 25%, ${f.bg}CC 0%, transparent 60%)` }}
               />
 
-              {/* Subtle top border accent */}
-              <div className={`absolute top-0 left-8 right-8 h-px bg-gradient-to-r ${feature.gradient} opacity-0 group-hover:opacity-40 transition-opacity duration-400`} />
+              {/* Top border accent */}
+              <div
+                className="absolute top-0 left-8 right-8 h-[1.5px] opacity-0 group-hover:opacity-60 transition-opacity duration-400 rounded-full"
+                style={{ background: `linear-gradient(90deg, transparent, ${f.color}, transparent)` }}
+              />
 
               {/* Icon */}
-              <div className="relative mb-6">
+              <div className="relative mb-7">
                 <div
-                  className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center shadow-blue`}
+                  className="w-12 h-12 rounded-2xl flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
+                  style={{ background: f.bg, color: f.color, boxShadow: `0 2px 12px ${f.color}25` }}
                 >
-                  {feature.icon}
+                  {f.icon}
                 </div>
-                {/* Glow blob behind icon */}
                 <div
-                  className={`absolute inset-0 w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.gradient} blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-400`}
+                  className="absolute inset-0 w-12 h-12 rounded-2xl blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-400"
+                  style={{ background: f.color }}
                 />
               </div>
 
-              {/* Detail badge */}
-              <div className="inline-flex items-center gap-1.5 bg-blue-50/80 border border-blue-100/80 rounded-full px-2.5 py-1 mb-4">
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                <span className="text-blue-600 text-[11px] font-semibold">{feature.detail}</span>
-              </div>
+              {/* Pill */}
+              <span
+                className="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-full mb-4"
+                style={{ background: f.bg, color: f.color }}
+              >
+                <span className="w-1 h-1 rounded-full" style={{ background: f.color }} />
+                {f.pill}
+              </span>
 
-              {/* Title */}
-              <h3 className="text-slate-900 font-bold text-[1.15rem] mb-3 tracking-tight">
-                {feature.title}
+              <h3 className="text-slate-900 font-semibold text-[18px] tracking-[-0.01em] mb-3">
+                {f.title}
               </h3>
+              <p className="text-slate-500 text-[14.5px] leading-relaxed">{f.desc}</p>
 
-              {/* Description */}
-              <p className="text-slate-500 text-[15px] leading-relaxed">
-                {feature.description}
-              </p>
-
-              {/* Arrow link */}
-              <div className="mt-6 flex items-center gap-1.5 text-blue-600 text-[13px] font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-0 group-hover:translate-x-1">
-                <span>Learn more</span>
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              {/* Subtle arrow */}
+              <div className="flex items-center gap-1 mt-6 text-[13px] font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-0 group-hover:translate-x-1" style={{ color: f.color }}>
+                Learn more
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M3 7H11M8 4L11 7L8 10" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* ── Bottom trust strip ── */}
+        {/* Bottom trust strip */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-14 flex flex-wrap justify-center items-center gap-x-8 gap-y-4"
+          variants={fadeUp(0.5)}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="mt-16 flex flex-wrap items-center justify-center gap-x-10 gap-y-4"
         >
-          {[
-            { icon: "🔒", text: "Secure & reliable" },
-            { icon: "🚀", text: "Launch-ready code" },
-            { icon: "💬", text: "Dedicated support" },
-            { icon: "✅", text: "Satisfaction guaranteed" },
-          ].map((item) => (
-            <div key={item.text} className="flex items-center gap-2 text-slate-500 text-[13px] font-medium">
-              <span className="text-base">{item.icon}</span>
-              {item.text}
+          {["Secure & reliable", "Launch-ready code", "Dedicated support", "Satisfaction guaranteed"].map((t) => (
+            <div key={t} className="flex items-center gap-2 text-slate-400 text-[13px] font-medium">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2.5 7L5.5 10L11.5 4" stroke="#abc4ff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              {t}
             </div>
           ))}
         </motion.div>

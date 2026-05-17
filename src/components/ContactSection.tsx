@@ -3,142 +3,236 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-const contactMethods = [
+const fadeUp = (delay = 0) => ({
+  hidden:  { opacity: 0, y: 22 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] as const } },
+});
+
+const contactCards = [
   {
-    name: "Email Us",
-    detail: "hello@virtualcgo.app",
+    id:     "contact-email",
+    label:  "Email Us",
+    value:  "hello@virtualcgo.app",
+    href:   "mailto:hello@virtualcgo.app",
     icon: (
-      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M2 4.5H16V13.5C16 14.05 15.55 14.5 15 14.5H3C2.45 14.5 2 14.05 2 13.5V4.5Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+        <path d="M2 4.5L9 10L16 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
   },
   {
-    name: "WhatsApp",
-    detail: "+91 98765 43210",
+    id:     "contact-whatsapp",
+    label:  "WhatsApp",
+    value:  "+91 98765 43210",
+    href:   "https://wa.me/919876543210",
     icon: (
-      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
+        <path d="M9 1.5C4.86 1.5 1.5 4.86 1.5 9c0 1.56.45 3.06 1.26 4.35L1.5 16.5l3.24-1.23A7.44 7.44 0 009 16.5c4.14 0 7.5-3.36 7.5-7.5S13.14 1.5 9 1.5zm0 13.5c-1.35 0-2.61-.39-3.69-1.05l-.27-.15-2.01.75.75-1.98-.18-.3A6 6 0 013 9c0-3.315 2.685-6 6-6s6 2.685 6 6-2.685 6-6 6zm3.33-4.44c-.18-.09-1.065-.525-1.23-.585-.165-.06-.285-.09-.405.09-.12.18-.465.585-.57.705-.105.12-.21.135-.39.045-.18-.09-.765-.285-1.455-.9-.54-.48-.9-1.065-1.005-1.245-.105-.18-.012-.276.078-.366.081-.081.18-.21.27-.315.09-.105.12-.18.18-.3.06-.12.03-.225-.015-.315-.045-.09-.405-.975-.555-1.335-.15-.36-.3-.3-.405-.306-.105-.006-.225-.006-.345-.006-.12 0-.315.045-.48.225-.165.18-.63.615-.63 1.5 0 .885.645 1.74.735 1.86.09.12 1.275 1.95 3.09 2.73.432.186.768.297 1.032.381.432.138.825.117 1.134.072.345-.051 1.065-.435 1.215-.855.15-.42.15-.78.105-.855-.045-.075-.165-.12-.345-.21z"/>
       </svg>
     ),
   },
   {
-    name: "Instagram",
-    detail: "@virtualcgo",
+    id:     "contact-instagram",
+    label:  "Instagram",
+    value:  "@virtualcgo",
+    href:   "https://instagram.com/virtualcgo",
     icon: (
-      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" strokeWidth={2} />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
-        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" strokeWidth={2.5} strokeLinecap="round" />
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <rect x="2" y="2" width="14" height="14" rx="4" stroke="currentColor" strokeWidth="1.5"/>
+        <circle cx="9" cy="9" r="3" stroke="currentColor" strokeWidth="1.5"/>
+        <circle cx="13" cy="5" r="0.8" fill="currentColor"/>
       </svg>
     ),
   },
 ];
 
 export default function ContactSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const ref    = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section id="contact" ref={ref} className="relative py-24 lg:py-32 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white to-[#f8faff]" />
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          
-          {/* Left Column: Text & Contact Cards */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <h2 className="text-[2.4rem] sm:text-[3rem] font-extrabold text-slate-900 tracking-tight leading-[1.1] mb-6">
-              Let’s Build Your <span className="gradient-text">Online Presence</span>
-            </h2>
-            <p className="text-slate-500 text-lg leading-relaxed mb-10 max-w-md">
-              Have a project in mind? Let’s create something modern, fast, and premium for your business.
-            </p>
+    <section
+      id="contact"
+      ref={ref}
+      className="relative py-28 lg:py-36 overflow-hidden bg-white"
+    >
+      {/* Ambient */}
+      <div className="absolute inset-0 pointer-events-none -z-10">
+        <div
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] opacity-40"
+          style={{ background: "radial-gradient(ellipse at center bottom, rgba(193,211,254,0.5) 0%, transparent 65%)" }}
+        />
+      </div>
 
-            <div className="flex flex-col gap-4">
-              {contactMethods.map((method, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ y: -4, scale: 1.01 }}
-                  className="group flex items-center gap-4 p-4 rounded-2xl bg-white/70 backdrop-blur-md border border-slate-200/60 shadow-soft hover:shadow-[0_12px_32px_rgba(59,130,246,0.15)] hover:border-blue-200/80 transition-all duration-300 cursor-pointer"
-                >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center shadow-blue">
-                    {method.icon}
-                  </div>
-                  <div>
-                    <p className="text-slate-400 text-[13px] font-medium">{method.name}</p>
-                    <p className="text-slate-800 font-bold text-[15px]">{method.detail}</p>
-                  </div>
-                </motion.div>
-              ))}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+
+        {/* Header */}
+        <motion.div
+          variants={fadeUp()}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="text-center mb-16"
+        >
+          <span className="inline-flex items-center gap-2 text-blue-600 text-[12.5px] font-semibold tracking-[0.08em] uppercase bg-[#edf2fb] border border-[#c1d3fe]/70 rounded-full px-4 py-1.5 mb-5">
+            Get In Touch
+          </span>
+          <h2
+            className="font-bold text-slate-900 tracking-[-0.025em] leading-[1.1] mb-5"
+            style={{ fontSize: "clamp(2rem, 4vw, 2.9rem)" }}
+          >
+            Let&apos;s build your{" "}
+            <span className="gradient-text">online presence</span>
+          </h2>
+          <p className="text-slate-500 text-[17px] leading-relaxed max-w-[440px] mx-auto">
+            Share your idea. We&apos;ll have a plan back within the hour.
+          </p>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-16 items-start max-w-5xl mx-auto">
+
+          {/* Left — contact cards */}
+          <motion.div
+            variants={fadeUp(0.1)}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            className="flex flex-col gap-4"
+          >
+            {/* Info blurb */}
+            <div className="mb-4">
+              <p className="text-slate-600 text-[15px] leading-[1.7]">
+                Have a project in mind? Reach out via any channel below and we&apos;ll get back to you same day.
+              </p>
+            </div>
+
+            {contactCards.map((c, i) => (
+              <motion.a
+                key={c.id}
+                id={c.id}
+                href={c.href}
+                target={c.href.startsWith("http") ? "_blank" : undefined}
+                rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                whileHover={{ y: -3, scale: 1.01 }}
+                transition={{ type: "spring", stiffness: 300, damping: 22 }}
+                className="group flex items-center gap-4 p-4 rounded-2xl bg-[#f7f9ff] border border-slate-200/60 hover:border-[#c1d3fe] hover:bg-[#edf2fb]/70 hover:shadow-soft transition-all duration-250"
+              >
+                <div className="flex-shrink-0 w-11 h-11 rounded-xl gradient-blue flex items-center justify-center text-white shadow-blue group-hover:shadow-blue-md transition-shadow duration-250">
+                  {c.icon}
+                </div>
+                <div>
+                  <p className="text-slate-400 text-[12px] font-medium mb-0.5">{c.label}</p>
+                  <p className="text-slate-800 font-semibold text-[14.5px] group-hover:text-blue-600 transition-colors duration-150">{c.value}</p>
+                </div>
+                <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3.5 8H12.5M9.5 5L12.5 8L9.5 11" stroke="#2563eb" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+              </motion.a>
+            ))}
+
+            {/* Response time badge */}
+            <div className="flex items-center gap-2.5 mt-2 p-4 rounded-2xl bg-emerald-50 border border-emerald-100">
+              <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <p className="text-emerald-700 text-[13px] font-medium">Typically responds within <strong>1 hour</strong></p>
             </div>
           </motion.div>
 
-          {/* Right Column: Contact Form */}
+          {/* Right — form */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            variants={fadeUp(0.2)}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
           >
-            <div className="bg-white/80 backdrop-blur-xl border border-slate-200/80 rounded-[2rem] p-8 sm:p-10 shadow-[0_8px_40px_rgba(148,163,184,0.15)]">
-              <form className="flex flex-col gap-5">
-                <div className="grid sm:grid-cols-2 gap-5">
+            <div
+              className="bg-white border border-slate-200/70 rounded-3xl p-7 sm:p-9"
+              style={{
+                boxShadow: "0 2px 8px rgba(100,116,139,0.07), 0 12px 40px rgba(100,116,139,0.08), inset 0 1px 0 rgba(255,255,255,0.9)",
+              }}
+            >
+              <p className="text-slate-900 font-semibold text-[16px] mb-6 tracking-[-0.01em]">Send us a message</p>
+
+              <form className="flex flex-col gap-5" onSubmit={(e) => e.preventDefault()}>
+                <div className="grid sm:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[13px] font-semibold text-slate-700 ml-1">Name</label>
+                    <label className="text-[12.5px] font-semibold text-slate-600 tracking-wide">Name</label>
                     <input
                       type="text"
-                      placeholder="John Doe"
-                      className="w-full px-5 py-3.5 rounded-xl bg-slate-50/50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/80 transition-all text-[15px] text-slate-800 placeholder-slate-400"
+                      placeholder="Aryan Sharma"
+                      className="w-full px-4 py-3 rounded-xl bg-[#f7f9ff] border border-slate-200/70 text-[14.5px] text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#abc4ff] focus:ring-2 focus:ring-[#abc4ff]/30 transition-all duration-200"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[13px] font-semibold text-slate-700 ml-1">Email</label>
+                    <label className="text-[12.5px] font-semibold text-slate-600 tracking-wide">Email</label>
                     <input
                       type="email"
-                      placeholder="john@example.com"
-                      className="w-full px-5 py-3.5 rounded-xl bg-slate-50/50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/80 transition-all text-[15px] text-slate-800 placeholder-slate-400"
+                      placeholder="aryan@business.com"
+                      className="w-full px-4 py-3 rounded-xl bg-[#f7f9ff] border border-slate-200/70 text-[14.5px] text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#abc4ff] focus:ring-2 focus:ring-[#abc4ff]/30 transition-all duration-200"
                     />
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[13px] font-semibold text-slate-700 ml-1">Business Name</label>
+                  <label className="text-[12.5px] font-semibold text-slate-600 tracking-wide">Business Name</label>
                   <input
                     type="text"
-                    placeholder="Your Company LLC"
-                    className="w-full px-5 py-3.5 rounded-xl bg-slate-50/50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/80 transition-all text-[15px] text-slate-800 placeholder-slate-400"
+                    placeholder="Your Business"
+                    className="w-full px-4 py-3 rounded-xl bg-[#f7f9ff] border border-slate-200/70 text-[14.5px] text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#abc4ff] focus:ring-2 focus:ring-[#abc4ff]/30 transition-all duration-200"
                   />
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[13px] font-semibold text-slate-700 ml-1">Message</label>
+                  <label className="text-[12.5px] font-semibold text-slate-600 tracking-wide">Tell us about your project</label>
                   <textarea
                     rows={4}
-                    placeholder="Tell us about your project..."
-                    className="w-full px-5 py-3.5 rounded-xl bg-slate-50/50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500/80 transition-all text-[15px] text-slate-800 placeholder-slate-400 resize-none"
+                    placeholder="I need a website for my restaurant in Mumbai..."
+                    className="w-full px-4 py-3 rounded-xl bg-[#f7f9ff] border border-slate-200/70 text-[14.5px] text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#abc4ff] focus:ring-2 focus:ring-[#abc4ff]/30 transition-all duration-200 resize-none"
                   />
                 </div>
 
                 <motion.button
+                  type="submit"
                   whileHover={{ scale: 1.015 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="mt-2 w-full py-4 px-6 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold text-center text-[15px] shadow-[0_8px_20px_rgba(59,130,246,0.25)] hover:shadow-[0_12px_28px_rgba(59,130,246,0.35)] transition-all flex items-center justify-center gap-2"
-                  type="button"
+                  whileTap={{ scale: 0.985 }}
+                  className="btn-primary mt-1 w-full py-3.5 rounded-xl text-white font-semibold text-[15px] flex items-center justify-center gap-2.5"
                 >
                   Send Message
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M2.5 13.5L13.5 2.5M13.5 2.5H7.5M13.5 2.5V8.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </motion.button>
+
+                <p className="text-slate-400 text-[12px] text-center font-medium">
+                  We respect your privacy. No spam, ever.
+                </p>
               </form>
             </div>
           </motion.div>
 
+        </div>
+      </div>
+
+      {/* Footer strip */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 mt-24 pt-8 border-t border-slate-200/60">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2.5">
+            <div className="w-6 h-6 rounded-lg gradient-blue flex items-center justify-center shadow-blue">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 6L4.5 8.5L10 3" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <span className="text-slate-500 text-[13.5px] font-medium tracking-[-0.01em]">
+              Virtual <span className="text-blue-600 font-semibold">CGO</span>
+            </span>
+          </div>
+          <p className="text-slate-400 text-[13px]">
+            © {new Date().getFullYear()} Virtual CGO. All rights reserved.
+          </p>
+          <div className="flex items-center gap-5">
+            {["Privacy", "Terms", "Instagram"].map((l) => (
+              <a key={l} href="#" className="text-slate-400 hover:text-slate-600 text-[13px] font-medium transition-colors duration-150">{l}</a>
+            ))}
+          </div>
         </div>
       </div>
     </section>
