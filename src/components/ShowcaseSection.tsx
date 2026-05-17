@@ -8,58 +8,76 @@ import { useInView } from "framer-motion";
 
 const websiteDemos = [
   {
-    id: "demo-bella-cucina",
-    name: "Bella Cucina",
-    category: "Restaurant",
-    url: "bella-cucina.com",
-    gradient: "from-orange-400 via-rose-400 to-orange-500",
-    categoryColor: "text-orange-500",
-    categoryBg: "bg-orange-50",
+    id: "demo-astro",
+    name: "Astro Bibhash Mishra",
+    category: "Web Development",
+    url: "astrobibhashmishra.com",
+    link: "https://www.astrobibhashmishra.com/",
+    description: "Vedic astrology consultation website with booking system and service catalogue.",
+    gradient: "from-indigo-900 via-blue-900 to-amber-700",
+    categoryColor: "text-indigo-600",
+    categoryBg: "bg-indigo-50",
+    buttonText: "Visit Website"
   },
   {
-    id: "demo-ironforge-gym",
-    name: "IronForge Gym",
-    category: "Fitness",
-    url: "ironforge.gym",
-    gradient: "from-blue-500 via-blue-400 to-cyan-400",
+    id: "demo-college",
+    name: "College Management Software",
+    category: "Software Development",
+    url: "dashboard.app",
+    link: "#",
+    description: "Institution management platform for schools and colleges.",
+    gradient: "from-slate-800 via-blue-900 to-cyan-700",
     categoryColor: "text-blue-600",
     categoryBg: "bg-blue-50",
+    buttonText: "View Project"
   },
   {
     id: "demo-studio-mira",
     name: "Studio Mira",
     category: "Portfolio",
     url: "studiomira.com",
+    link: "#",
+    description: "Modern portfolio for creative agencies and designers.",
     gradient: "from-violet-500 via-purple-400 to-fuchsia-400",
     categoryColor: "text-violet-600",
     categoryBg: "bg-violet-50",
+    buttonText: "View Demo"
   },
   {
     id: "demo-noir-apparel",
     name: "Noir Apparel",
     category: "Clothing Brand",
     url: "noiapparel.com",
+    link: "#",
+    description: "E-commerce store with minimal premium branding.",
     gradient: "from-slate-700 via-slate-600 to-slate-800",
     categoryColor: "text-slate-600",
     categoryBg: "bg-slate-100",
+    buttonText: "View Demo"
   },
   {
     id: "demo-brew-co",
     name: "Brew & Co.",
     category: "Cafe Landing",
     url: "brewco.com",
+    link: "#",
+    description: "Landing page for local cafes and coffee shops.",
     gradient: "from-amber-400 via-orange-400 to-rose-400",
     categoryColor: "text-amber-600",
     categoryBg: "bg-amber-50",
+    buttonText: "View Demo"
   },
   {
     id: "demo-lumen-realty",
     name: "Lumen Realty",
     category: "Real Estate",
     url: "lumenrealty.com",
+    link: "#",
+    description: "Property listing website with advanced search filters.",
     gradient: "from-blue-400 via-sky-400 to-cyan-500",
     categoryColor: "text-sky-600",
     categoryBg: "bg-sky-50",
+    buttonText: "View Demo"
   },
 ];
 
@@ -71,6 +89,7 @@ const logoDesigns = [
   { id: "logo-quartz", letter: "Q", name: "Quartz", gradient: "from-indigo-500 to-violet-400" },
   { id: "logo-vertex", letter: "V", name: "Vertex", gradient: "from-cyan-500 to-blue-500" },
 ];
+
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
@@ -109,14 +128,19 @@ function WebsitePreview({ gradient }: { gradient: string }) {
 }
 
 function DemoCard({ demo, index }: { demo: typeof websiteDemos[0]; index: number }) {
+  const isReal = demo.link !== "#";
+  const Wrapper = isReal ? motion.a : motion.div;
+
   return (
-    <motion.div
+    <Wrapper
+      href={isReal ? demo.link : undefined}
+      target={isReal ? "_blank" : undefined}
       id={demo.id}
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ y: -5, scale: 1.015 }}
-      className="group bg-white border border-slate-200/70 rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover hover:border-blue-200/50 transition-all duration-300 cursor-pointer"
+      className={`group bg-white border border-slate-200/70 rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover hover:border-blue-200/50 transition-all duration-300 flex flex-col ${isReal ? 'cursor-pointer' : 'cursor-default'}`}
     >
       {/* Browser chrome */}
       <div className="flex items-center gap-2 px-3 py-2.5 border-b border-slate-100 bg-slate-50/80">
@@ -133,34 +157,39 @@ function DemoCard({ demo, index }: { demo: typeof websiteDemos[0]; index: number
       </div>
 
       {/* Preview area */}
-      <div className="h-40 overflow-hidden">
+      <div className="h-36 overflow-hidden">
         <WebsitePreview gradient={demo.gradient} />
       </div>
 
       {/* Card footer */}
-      <div className="px-4 py-3.5 flex items-center justify-between gap-2">
+      <div className="px-4 py-4 flex flex-col flex-grow justify-between gap-3">
         <div>
-          <p className="text-slate-800 font-bold text-[14px]">{demo.name}</p>
-          <span
-            className={`inline-block text-[10px] font-semibold uppercase tracking-wider mt-0.5 px-2 py-0.5 rounded-full ${demo.categoryColor} ${demo.categoryBg}`}
-          >
-            {demo.category}
-          </span>
+          <div className="flex items-start justify-between gap-2 mb-1.5">
+            <p className="text-slate-800 font-bold text-[14px] leading-tight">{demo.name}</p>
+            <span
+              className={`inline-block text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full whitespace-nowrap ${demo.categoryColor} ${demo.categoryBg}`}
+            >
+              {demo.category}
+            </span>
+          </div>
+          <p className="text-slate-500 text-[12px] leading-relaxed line-clamp-2">
+            {demo.description}
+          </p>
         </div>
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.96 }}
-          className="btn-primary text-white text-[11px] font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1 flex-shrink-0"
-        >
-          View Demo
-          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-          </svg>
-        </motion.button>
+        
+        <div className="flex justify-end mt-2">
+          <div className="btn-primary text-white text-[11px] font-semibold px-4 py-1.5 rounded-lg flex items-center gap-1.5 w-fit group-hover:shadow-[0_8px_16px_rgba(59,130,246,0.3)] transition-all">
+            {demo.buttonText}
+            <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </div>
+        </div>
       </div>
-    </motion.div>
+    </Wrapper>
   );
 }
+
 
 function LogoCard({ logo, index }: { logo: typeof logoDesigns[0]; index: number }) {
   return (
