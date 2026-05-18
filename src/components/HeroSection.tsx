@@ -13,7 +13,7 @@ const stagger = {
 };
 
 const trustItems = [
-  { label: "₹499", sub: "Starting price" },
+  { label: "₹4999", sub: "Starting price" },
   { label: "24h",  sub: "Fast delivery" },
   { label: "100%", sub: "Mobile ready" },
 ];
@@ -68,7 +68,7 @@ export default function HeroSection() {
                   <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-blue-400 opacity-60" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
                 </span>
-                Now live — Websites from ₹499
+                Now live — Websites from ₹4999
               </span>
             </motion.div>
 
