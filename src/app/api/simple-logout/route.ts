@@ -1,0 +1,10 @@
+import { NextResponse } from "next/server";
+
+export async function POST() {
+  const response = NextResponse.redirect(new URL("/login", process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"));
+  
+  // Clear the simple session cookie
+  response.cookies.delete("simple_admin_session");
+  
+  return response;
+}
