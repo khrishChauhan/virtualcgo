@@ -15,25 +15,29 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 2. Look up the user in the Prisma database
+    // 2. Add temporary debug console logs
+    console.log("DEBUG: Received login request for email:", email);
+    console.log("DEBUG: Received login request password:", password);
+
+    // 3. Look up the user in the Prisma database using exact email
     const user = await prisma.user.findUnique({
-      where: { email: email.toLowerCase().trim() },
+      where: { email },
     });
 
-    // 3. Verify user exists and has ADMIN role
+    console.log("DEBUG: Found user from Prisma:", user ? { id: user.id, email: user.email, role: user.role } : null);
+
+    // 4. Verify user exists and has ADMIN role
     if (!user || user.role !== "ADMIN") {
+      console.log("DEBUG: Login failed - User not found or not an ADMIN");
       return NextResponse.json(
         { success: false, message: "Invalid credentials or not an admin" },
         { status: 401 }
       );
     }
 
-    // 4. Simple password check (Note: For beginners, comparing plain text or simple bcrypt)
-    // Here we use bcrypt to compare the password with the stored hash
-    
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-
-    if (!isPasswordValid) {
+    // 5. Temporarily remove bcrypt logic completely - use plain text comparison
+    if (user.password !== password) {
+      console.log("DEBUG: Login failed - Password mismatch");
       return NextResponse.json(
         { success: false, message: "Invalid credentials" },
         { status: 401 }
