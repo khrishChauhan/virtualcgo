@@ -27,8 +27,12 @@ export default function LoginPage() {
       const data = await res.json();
 
       if (res.ok && data.success) {
-        // Redirect to admin dashboard on success
-        router.push("/admin/dashboard");
+        // Redirect based on user role
+        if (data.role === "ADMIN") {
+          router.push("/admin/dashboard");
+        } else {
+          router.push("/staff/dashboard");
+        }
       } else {
         setError(data.message || "Login failed");
       }

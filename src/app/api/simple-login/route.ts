@@ -25,11 +25,11 @@ export async function POST(request: NextRequest) {
 
     console.log("DEBUG: Found user from Prisma:", user ? { id: user.id, email: user.email, role: user.role } : null);
 
-    // 4. Verify user exists and has ADMIN role
-    if (!user || user.role !== "ADMIN") {
-      console.log("DEBUG: Login failed - User not found or not an ADMIN");
+    // 4. Verify user exists and has ADMIN or STAFF role
+    if (!user || (user.role !== "ADMIN" && user.role !== "STAFF")) {
+      console.log("DEBUG: Login failed - User not found or invalid role");
       return NextResponse.json(
-        { success: false, message: "Invalid credentials or not an admin" },
+        { success: false, message: "Invalid credentials" },
         { status: 401 }
       );
     }
@@ -43,9 +43,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 5. Create a simple, basic session cookie (No advanced JWT yet, just user ID)
+    // 6. Create a simple, basic session cookie (No advanced JWT yet, just user ID)
     const response = NextResponse.json(
-      { success: true, message: "Login successful" },
+      { success: true, message: "Login successful", role: user.role },
       { status: 200 }
     );
 
