@@ -11,7 +11,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Virtual CGO — Build Your Business Presence Online",
   description:
-    "Professional websites, GMB setup, branding, logos, and landing pages — all in one affordable package. Starting at ₹4999.",
+    "Professional websites, GMB setup, branding, logos, and landing pages — all in one affordable package. Starting at ₹7999.",
   keywords: [
     "website design",
     "GMB setup",
