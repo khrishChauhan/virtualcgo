@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import bcrypt from "bcryptjs";
 
 export async function POST(request: NextRequest) {
   try {
@@ -29,7 +30,7 @@ export async function POST(request: NextRequest) {
 
     // 4. Simple password check (Note: For beginners, comparing plain text or simple bcrypt)
     // Here we use bcrypt to compare the password with the stored hash
-    const bcrypt = require("bcryptjs");
+    
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
