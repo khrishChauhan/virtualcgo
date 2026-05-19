@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import { Role } from "@prisma/client";
+
+export type Role = "ADMIN" | "STAFF";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
