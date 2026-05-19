@@ -87,6 +87,24 @@ export default function HeroSection() {
               <span className="gradient-text">presence.</span>
             </motion.h1>
 
+            {/* WhatsApp Automation tagline - Premium styling */}
+            <motion.div
+              variants={fadeUp}
+              className="inline-flex items-center gap-2.5 mb-7 bg-emerald-50/80 backdrop-blur-xs border border-emerald-200/50 rounded-2xl px-4 py-3 shadow-soft max-w-[430px] relative overflow-hidden group"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-100/10 via-transparent to-transparent pointer-events-none" />
+              <span className="relative flex h-2.5 w-2.5 flex-shrink-0">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+              </span>
+              <span className="text-[13px] font-bold text-emerald-800 tracking-wide flex items-center gap-1.5">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" className="text-emerald-600">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.66.986 3.293 1.493 4.85 1.495 5.51 0 9.99-4.474 9.993-9.978.002-2.668-1.03-5.176-2.905-7.054C16.66 1.737 14.153.7 11.49.7 5.976.7 1.497 5.179 1.495 10.685c-.001 1.7.452 3.354 1.31 4.8l-.398 1.452.392 1.433 3.848-1.416z" />
+                </svg>
+                We automate your business WhatsApp with AI chatbots.
+              </span>
+            </motion.div>
+
             {/* Sub */}
             <motion.p
               variants={fadeUp}
@@ -295,6 +313,43 @@ export default function HeroSection() {
           </motion.div>
 
         </div>
+
+        {/* ── Partner Logos Strip ── */}
+        <motion.div
+          variants={fadeUp}
+          className="mt-20 pt-10 border-t border-slate-200/40 relative z-10 w-full"
+        >
+          <p className="text-center text-[11px] font-bold uppercase tracking-[0.18em] text-slate-400/80 mb-6">
+            TRUSTED BY FAST-GROWING BRANDS ACROSS INDIA
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 md:gap-x-16 opacity-50 hover:opacity-75 transition-opacity duration-300">
+            {/* Logo 1 */}
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-md bg-blue-600 flex items-center justify-center text-white font-black text-[12px] shadow-sm">N</div>
+              <span className="text-slate-800 font-bold text-[13.5px] tracking-tight">NovaCorp</span>
+            </div>
+            {/* Logo 2 */}
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-md bg-emerald-600 flex items-center justify-center text-white font-black text-[12px] shadow-sm">P</div>
+              <span className="text-slate-800 font-bold text-[13.5px] tracking-tight">PulseFit</span>
+            </div>
+            {/* Logo 3 */}
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-md bg-purple-600 flex items-center justify-center text-white font-black text-[12px] shadow-sm">A</div>
+              <span className="text-slate-800 font-bold text-[13.5px] tracking-tight">ArcadeMedia</span>
+            </div>
+            {/* Logo 4 */}
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-md bg-blue-500 flex items-center justify-center text-white font-black text-[12px] shadow-sm">O</div>
+              <span className="text-slate-800 font-bold text-[13.5px] tracking-tight">OrbitTech</span>
+            </div>
+            {/* Logo 5 */}
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-md bg-indigo-600 flex items-center justify-center text-white font-black text-[12px] shadow-sm">V</div>
+              <span className="text-slate-800 font-bold text-[13.5px] tracking-tight">VertexAI</span>
+            </div>
+          </div>
+        </motion.div>
       </div>
 
       {/* Bottom section transition */}

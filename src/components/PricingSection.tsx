@@ -129,31 +129,43 @@ export default function PricingSection() {
               </div>
 
               {/* Pricing area with spotlight glow and premium visual layout */}
-              <div className="mb-8 flex flex-col gap-2 relative">
+              <div className="mb-8 flex flex-col gap-2.5 relative">
                 {/* Spotlight glow behind price */}
                 <div className="absolute -left-6 -top-6 w-36 h-24 bg-blue-400/10 rounded-full blur-2xl pointer-events-none" />
                 
+                {/* Today's Offer Badge */}
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-orange-50 border border-orange-200/80 text-[11.5px] font-bold text-orange-700 w-fit relative z-10">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-orange-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500" />
+                  </span>
+                  Today&apos;s Offer
+                </div>
+
                 {/* Original crossed-out price */}
-                <div className="flex items-center gap-2 relative z-10">
-                  <span className="text-slate-400 font-medium line-through text-[16px]">₹7,999</span>
-                  <span className="text-slate-400 font-bold text-[9px] uppercase tracking-wider bg-slate-100 border border-slate-200/50 rounded px-1.5 py-0.5">Original</span>
+                <div className="flex items-center gap-2.5 relative z-10 mt-1">
+                  <span className="text-slate-400/80 font-medium line-through text-[18px]">₹36,000 + GST</span>
+                  <span className="text-slate-400 font-bold text-[9px] uppercase tracking-wider bg-slate-100 border border-slate-200/50 rounded px-1.5 py-0.5">Original Value</span>
                 </div>
                 
                 {/* Offer price with large bold blue gradient */}
                 <div className="flex items-baseline gap-2 relative z-10">
                   <span className="bg-gradient-to-r from-blue-700 via-blue-600 to-[#abc4ff] bg-clip-text text-transparent font-extrabold tracking-[-0.04em] text-[3.5rem] leading-none">
-                    ₹4,999
+                    ₹7,999
                   </span>
-                  <span className="text-slate-400 font-medium text-[13px]">one-time</span>
+                  <span className="text-slate-400 font-medium text-[13.5px]">flat one-time fee</span>
                 </div>
                 
-                {/* Offer details strip */}
-                <div className="flex flex-col gap-1 mt-1 relative z-10">
-                  <div className="text-[12.5px] font-bold text-blue-600 uppercase tracking-widest">
-                    Limited Time Offer
+                {/* Extra limited coupon offer strip */}
+                <div className="flex flex-col gap-1.5 mt-1.5 relative z-10 p-3 rounded-xl bg-emerald-50/70 border border-emerald-200/50">
+                  <div className="text-[12.5px] font-bold text-emerald-800 flex items-center gap-1">
+                    <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    Extra Coupon Code Applied
                   </div>
-                  <div className="text-[12.5px] text-slate-500 font-medium flex items-center gap-1.5">
-                    Save <span className="text-emerald-600 font-bold bg-emerald-50 border border-emerald-100 px-1.5 py-0.5 rounded">₹3,000</span> today
+                  <div className="text-[12px] text-slate-600 font-medium leading-relaxed">
+                    Get an additional <span className="font-bold text-emerald-700">₹2,000 instant discount</span> applied automatically at checkout! (Save ₹30,000+ total)
                   </div>
                 </div>
               </div>

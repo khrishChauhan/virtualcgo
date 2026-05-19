@@ -12,8 +12,8 @@ const contactCards = [
   {
     id:     "contact-email",
     label:  "Email Us",
-    value:  "hello@virtualcgo.app",
-    href:   "mailto:hello@virtualcgo.app",
+    value:  "connect@virtualcgo.com",
+    href:   "mailto:connect@virtualcgo.com",
     icon: (
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
         <path d="M2 4.5H16V13.5C16 14.05 15.55 14.5 15 14.5H3C2.45 14.5 2 14.05 2 13.5V4.5Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
@@ -23,12 +23,12 @@ const contactCards = [
   },
   {
     id:     "contact-whatsapp",
-    label:  "WhatsApp",
-    value:  "+91 98765 43210",
-    href:   "https://wa.me/919876543210",
+    label:  "WhatsApp Business",
+    value:  "7428-505-344",
+    href:   "https://wa.me/917428505344",
     icon: (
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
-        <path d="M9 1.5C4.86 1.5 1.5 4.86 1.5 9c0 1.56.45 3.06 1.26 4.35L1.5 16.5l3.24-1.23A7.44 7.44 0 009 16.5c4.14 0 7.5-3.36 7.5-7.5S13.14 1.5 9 1.5zm0 13.5c-1.35 0-2.61-.39-3.69-1.05l-.27-.15-2.01.75.75-1.98-.18-.3A6 6 0 013 9c0-3.315 2.685-6 6-6s6 2.685 6 6-2.685 6-6 6zm3.33-4.44c-.18-.09-1.065-.525-1.23-.585-.165-.06-.285-.09-.405.09-.12.18-.465.585-.57.705-.105.12-.21.135-.39.045-.18-.09-.765-.285-1.455-.9-.54-.48-.9-1.065-1.005-1.245-.105-.18-.012-.276.078-.366.081-.081.18-.21.27-.315.09-.105.12-.18.18-.3.06-.12.03-.225-.015-.315-.045-.09-.405-.975-.555-1.335-.15-.36-.3-.3-.405-.306-.105-.006-.225-.006-.345-.006-.12 0-.315.045-.48.225-.165.18-.63.615-.63 1.5 0 .885.645 1.74.735 1.86.09.12 1.275 1.95 3.09 2.73.432.186.768.297 1.032.381.432.138.825.117 1.134.072.345-.051 1.065-.435 1.215-.855.15-.42.15-.78.105-.855-.045-.075-.165-.12-.345-.21z"/>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.66.986 3.293 1.493 4.85 1.495 5.51 0 9.99-4.474 9.993-9.978.002-2.668-1.03-5.176-2.905-7.054C16.66 1.737 14.153.7 11.49.7 5.976.7 1.497 5.179 1.495 10.685c-.001 1.7.452 3.354 1.31 4.8l-.398 1.452.392 1.433 3.848-1.416z" />
       </svg>
     ),
   },
@@ -36,12 +36,23 @@ const contactCards = [
     id:     "contact-instagram",
     label:  "Instagram",
     value:  "@virtualcgo",
-    href:   "https://instagram.com/virtualcgo",
+    href:   "https://www.instagram.com/virtualcgo/?hl=en",
     icon: (
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
         <rect x="2" y="2" width="14" height="14" rx="4" stroke="currentColor" strokeWidth="1.5"/>
         <circle cx="9" cy="9" r="3" stroke="currentColor" strokeWidth="1.5"/>
         <circle cx="13" cy="5" r="0.8" fill="currentColor"/>
+      </svg>
+    ),
+  },
+  {
+    id:     "contact-linkedin",
+    label:  "LinkedIn",
+    value:  "Virtual CGO",
+    href:   "https://www.linkedin.com/company/virtualcgo/",
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
       </svg>
     ),
   },
@@ -225,13 +236,19 @@ export default function ContactSection() {
               Virtual <span className="text-blue-600 font-semibold">CGO</span>
             </span>
           </div>
-          <p className="text-slate-400 text-[13px]">
-            © {new Date().getFullYear()} Virtual CGO. All rights reserved.
-          </p>
-          <div className="flex items-center gap-5">
-            {["Privacy", "Terms", "Instagram"].map((l) => (
-              <a key={l} href="#" className="text-slate-400 hover:text-slate-600 text-[13px] font-medium transition-colors duration-150">{l}</a>
-            ))}
+          <div className="text-center sm:text-left">
+            <p className="text-slate-400 text-[13px] font-medium">
+              © {new Date().getFullYear()} Virtual CGO. All rights reserved.
+            </p>
+            <p className="text-slate-400/70 text-[11.5px] mt-1 font-normal">
+              Virtual CGO is operated under <span className="text-slate-500 font-semibold">Effimony LLP</span>.
+            </p>
+          </div>
+          <div className="flex items-center gap-5 flex-wrap justify-center sm:justify-end">
+            <a href="/privacy" className="text-slate-400 hover:text-slate-600 text-[13px] font-medium transition-colors duration-150">Privacy</a>
+            <a href="/terms" className="text-slate-400 hover:text-slate-600 text-[13px] font-medium transition-colors duration-150">Terms</a>
+            <a href="https://www.instagram.com/virtualcgo/?hl=en" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-600 text-[13px] font-medium transition-colors duration-150">Instagram</a>
+            <a href="https://www.linkedin.com/company/virtualcgo/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-600 text-[13px] font-medium transition-colors duration-150">LinkedIn</a>
           </div>
         </div>
       </div>

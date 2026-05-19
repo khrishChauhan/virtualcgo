@@ -10,42 +10,42 @@ import Image from "next/image";
 const websiteDemos = [
   {
     id: "demo-astro",
-    name: "Astro Bibhash Mishra",
-    category: "Web Development",
+    name: "Astro/Vastu Consultations",
+    category: "Client Website",
     url: "astrobibhashmishra.com",
     link: "https://www.astrobibhashmishra.com/",
-    description: "Vedic astrology consultation website with booking system and service catalogue.",
+    description: "Vedic astrology consultation website with booking system, native services, and customized modules.",
     image: "/images/astro_hero.png",
     gradient: "from-indigo-900 via-blue-900 to-amber-700",
     categoryColor: "text-indigo-600",
     categoryBg: "bg-indigo-50",
-    buttonText: "Visit Website"
+    buttonText: "Visit Live Site"
   },
   {
     id: "demo-college",
     name: "College Management Software",
-    category: "Software Development",
-    url: "dashboard.app",
-    link: "#",
-    description: "Institution management platform for schools and colleges.",
+    category: "Software System",
+    url: "college.virtualcgo.com",
+    link: "https://react-admin-demo.vercel.app/",
+    description: "Institution management and student analytics portal designed for modern educational groups.",
     image: "/images/college-mgmt.png",
     gradient: "from-slate-800 via-blue-900 to-cyan-700",
     categoryColor: "text-blue-600",
     categoryBg: "bg-blue-50",
-    buttonText: "View Project"
+    buttonText: "Visit Live Demo"
   },
   {
     id: "demo-studio-mira",
-    name: "Studio Mira",
-    category: "Portfolio",
-    url: "studiomira.com",
-    link: "#",
-    description: "Modern portfolio for creative agencies and designers.",
+    name: "Studio Mira Showcase",
+    category: "Design Portfolio",
+    url: "studiomira.virtualcgo.com",
+    link: "https://studio-mira.vercel.app/",
+    description: "Modern design experience and interaction portfolio built for premium design boutiques.",
     image: "/images/studio-mira.png",
     gradient: "from-violet-500 via-purple-400 to-fuchsia-400",
     categoryColor: "text-violet-600",
     categoryBg: "bg-violet-50",
-    buttonText: "View Demo"
+    buttonText: "Visit Design Demo"
   },
 ];
 
@@ -96,13 +96,14 @@ function WebsitePreview({ gradient }: { gradient: string }) {
 }
 
 function DemoCard({ demo, index }: { demo: typeof websiteDemos[0]; index: number }) {
-  const isReal = demo.link !== "#";
-  const Wrapper = isReal ? motion.a : motion.div;
+  const isReal = true;
+  const Wrapper = motion.a;
 
   return (
     <Wrapper
-      href={isReal ? demo.link : undefined}
-      target={isReal ? "_blank" : undefined}
+      href={demo.link}
+      target="_blank"
+      rel="noopener noreferrer"
       id={demo.id}
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
