@@ -9,7 +9,11 @@ interface StaffUser {
   createdAt: string;
 }
 
-export default function StaffManagement() {
+interface StaffManagementProps {
+  onStaffUpdated?: () => void;
+}
+
+export default function StaffManagement({ onStaffUpdated }: StaffManagementProps) {
   const [staffList, setStaffList] = useState<StaffUser[]>([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -70,6 +74,9 @@ export default function StaffManagement() {
         setPassword("");
         // Reload list
         fetchStaff();
+        if (onStaffUpdated) {
+          onStaffUpdated();
+        }
       } else {
         showFeedback(data.message || "Failed to create staff account", "error");
       }
@@ -97,6 +104,9 @@ export default function StaffManagement() {
         showFeedback("Staff account deleted successfully", "success");
         // Optimistically remove from state
         setStaffList((prev) => prev.filter((item) => item.id !== id));
+        if (onStaffUpdated) {
+          onStaffUpdated();
+        }
       } else {
         showFeedback(data.message || "Failed to delete staff account", "error");
       }

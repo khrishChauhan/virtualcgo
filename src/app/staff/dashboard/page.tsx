@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import StaffDashboardClient from "@/components/StaffDashboardClient";
 
 export default async function StaffDashboard() {
   // 1. Read the session cookie
@@ -19,10 +20,27 @@ export default async function StaffDashboard() {
 
   // 4. Verify user exists and is a STAFF member
   if (!staff || staff.role !== "STAFF") {
-    // If not a staff but admin, they should go back to login (which handles admin)
-    // Or we can redirect to login to be clean
     redirect("/login");
   }
+
+  // 5. Query all projects assigned to this specific staff member
+  const projects = await prisma.project.findMany({
+    where: { assignedToId: staff.id },
+    orderBy: { createdAt: "desc" },
+  });
+
+  // 6. Serialize dates safely before passing to the client component
+  const serializedProjects = projects.map((p) => ({
+    id: p.id,
+    title: p.title,
+    clientName: p.clientName,
+    clientEmail: p.clientEmail,
+    clientPhone: p.clientPhone,
+    description: p.description,
+    status: p.status as "PENDING" | "IN_PROGRESS" | "COMPLETED",
+    createdAt: p.createdAt.toISOString(),
+    updatedAt: p.updatedAt.toISOString(),
+  }));
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -48,32 +66,22 @@ export default async function StaffDashboard() {
       </nav>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 py-8">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 text-center max-w-2xl mx-auto">
-          <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-            {(staff.name || "S")[0].toUpperCase()}
+      <main className="max-w-7xl mx-auto px-6 py-8 space-y-6">
+        {/* Welcome Section */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h2 className="text-xl font-bold text-gray-800">Welcome back, {staff.name || "Staff Member"}</h2>
+            <p className="text-gray-500 text-sm mt-1">
+              You are signed in as a CGO Delivery Specialist. Track assignments, update task states, and manage deliverables.
+            </p>
           </div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">Welcome to your Portal</h2>
-          <p className="text-gray-600 mb-6">
-            You are logged in as a registered Staff member ({staff.email}). Your assigned projects and daily task queue will appear here as soon as the Admin allocates them to you.
-          </p>
-
-          <div className="border-t border-gray-100 pt-6">
-            <div className="text-left bg-gray-50 p-4 rounded-lg border border-gray-150">
-              <h4 className="text-sm font-semibold text-gray-700 mb-2">Quick Stats:</h4>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li className="flex justify-between">
-                  <span>Assigned Projects:</span>
-                  <span className="font-bold text-blue-600">0</span>
-                </li>
-                <li className="flex justify-between">
-                  <span>Completed Tasks:</span>
-                  <span className="font-bold text-green-600">0</span>
-                </li>
-              </ul>
-            </div>
+          <div className="text-xs bg-green-50 border border-green-100 text-green-800 px-3 py-1.5 rounded-lg font-semibold h-fit w-fit">
+            Account Role: STAFF
           </div>
         </div>
+
+        {/* Dynamic client workspace */}
+        <StaffDashboardClient initialProjects={serializedProjects} />
       </main>
     </div>
   );
