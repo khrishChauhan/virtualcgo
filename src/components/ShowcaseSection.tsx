@@ -50,13 +50,36 @@ const websiteDemos = [
 ];
 
 const logoDesigns = [
-  { id: "logo-nova",   letter: "N", name: "Nova",   gradient: "from-blue-600 to-blue-400" },
-  { id: "logo-pulse",  letter: "P", name: "Pulse",  gradient: "from-cyan-500 to-blue-400" },
-  { id: "logo-arcade", letter: "A", name: "Arcade", gradient: "from-violet-500 to-purple-400" },
-  { id: "logo-orbit",  letter: "O", name: "Orbit",  gradient: "from-blue-500 to-indigo-400" },
-  { id: "logo-quartz", letter: "Q", name: "Quartz", gradient: "from-indigo-500 to-violet-400" },
-  { id: "logo-vertex", letter: "V", name: "Vertex", gradient: "from-cyan-500 to-blue-500" },
+  { 
+    id: "logo-astro-bibhash", 
+    name: "Astro Bibhash", 
+    image: "/images/logo-astro-bibhash.png", 
+    gradient: "from-orange-500 to-amber-500",
+    letter: "A" 
+  },
+  { 
+    id: "logo-sysfo", 
+    name: "Sysfo Software", 
+    image: "/images/logo-sysfo.png", 
+    gradient: "from-blue-900 to-indigo-800",
+    letter: "S" 
+  },
+  { 
+    id: "logo-click-aarambh", 
+    name: "Click Aarambh", 
+    image: "/images/logo-click-aarambh.png", 
+    gradient: "from-emerald-700 to-teal-800",
+    letter: "C" 
+  },
+  { 
+    id: "logo-uindiaux", 
+    name: "Uindiaux", 
+    image: "/images/logo-uindiaux.png", 
+    gradient: "from-indigo-600 to-blue-500",
+    letter: "U" 
+  },
 ];
+
 
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -172,23 +195,32 @@ function LogoCard({ logo, index }: { logo: typeof logoDesigns[0]; index: number 
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ y: -4, scale: 1.02 }}
-      className="group bg-white border border-slate-200/70 rounded-2xl p-6 flex flex-col items-center gap-3 shadow-card hover:shadow-card-hover hover:border-blue-200/50 transition-all duration-300 cursor-pointer"
+      className="group bg-white border border-slate-200/70 rounded-2xl p-6 flex flex-col items-center gap-3 shadow-card hover:shadow-card-hover hover:border-blue-200/50 transition-all duration-300 cursor-pointer w-full text-center"
     >
       {/* Logo icon */}
       <div className="relative">
-        <div
-          className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${logo.gradient} flex items-center justify-center shadow-blue`}
-        >
-          <span className="text-white font-bold text-2xl">{logo.letter}</span>
+        <div className="w-20 h-20 rounded-2xl bg-white border border-slate-100 flex items-center justify-center shadow-sm overflow-hidden relative group-hover:border-blue-100 transition-colors">
+          {logo.image ? (
+            <div className="w-full h-full relative p-2 bg-slate-50/50 flex items-center justify-center">
+              <Image 
+                src={logo.image} 
+                alt={logo.name} 
+                fill 
+                className="object-contain p-1 transition-transform duration-300 group-hover:scale-105" 
+              />
+            </div>
+          ) : (
+            <div className={`w-full h-full bg-gradient-to-br ${logo.gradient} flex items-center justify-center`}>
+              <span className="text-white font-bold text-2xl">{logo.letter}</span>
+            </div>
+          )}
         </div>
-        <div
-          className={`absolute inset-0 w-16 h-16 rounded-2xl bg-gradient-to-br ${logo.gradient} blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-300`}
-        />
+        <div className={`absolute inset-0 w-20 h-20 rounded-2xl bg-gradient-to-br ${logo.gradient} blur-lg opacity-0 group-hover:opacity-20 transition-opacity duration-300 -z-10`} />
       </div>
 
-      <div className="text-center">
-        <p className="text-slate-800 font-bold text-[15px]">{logo.name}</p>
-        <p className="text-slate-400 text-[12px] font-medium mt-0.5">Brand Identity</p>
+      <div className="mt-1">
+        <p className="text-slate-800 font-bold text-[14px] leading-tight line-clamp-1">{logo.name}</p>
+        <p className="text-slate-400 text-[11px] font-medium mt-1">Brand Identity</p>
       </div>
     </motion.div>
   );
@@ -298,7 +330,7 @@ export default function ShowcaseSection() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4"
+              className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-4xl mx-auto"
             >
               {logoDesigns.map((logo, i) => (
                 <LogoCard key={logo.id} logo={logo} index={i} />
