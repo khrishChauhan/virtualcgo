@@ -22,17 +22,17 @@ const websiteDemos = [
     buttonText: "Visit Live Site"
   },
   {
-    id: "demo-college",
-    name: "College Management Software",
-    category: "Software System",
-    url: "college.virtualcgo.com",
-    link: "https://react-admin-demo.vercel.app/",
-    description: "Institution management and student analytics portal designed for modern educational groups.",
-    image: "/images/college-mgmt.png",
-    gradient: "from-slate-800 via-blue-900 to-cyan-700",
-    categoryColor: "text-blue-600",
-    categoryBg: "bg-blue-50",
-    buttonText: "Visit Live Demo"
+    id: "demo-furniture",
+    name: "E-commerce Furniture Store",
+    category: "E-commerce Store",
+    url: "embroideryroomz.com",
+    link: "https://embroideryroomz.com/",
+    description: "Handcrafted cushions, home textiles, and premium decor accessories designed to transform elegant living spaces.",
+    image: "/images/furniture-store.png",
+    gradient: "from-teal-800 via-emerald-900 to-amber-700",
+    categoryColor: "text-emerald-600",
+    categoryBg: "bg-emerald-50",
+    buttonText: "Visit Live Store"
   },
   {
     id: "demo-studio-mira",

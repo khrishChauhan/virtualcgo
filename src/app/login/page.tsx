@@ -47,9 +47,9 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8 space-y-6 border border-gray-100">
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900">Admin Login</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Portal Login</h1>
           <p className="mt-2 text-sm text-gray-500">
-            Sign in to access the Virtual CGO management platform.
+            Sign in to access the Virtual CGO secure management dashboard.
           </p>
         </div>
 
@@ -65,7 +65,7 @@ export default function LoginPage() {
               htmlFor="email"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Admin ID (Email)
+              Email Address
             </label>
             <input
               id="email"
