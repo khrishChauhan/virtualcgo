@@ -38,7 +38,7 @@ export default function Navbar() {
         >
           {/* Logo */}
           <a href="#home" className="flex items-center gap-2.5 group" aria-label="Virtual CGO home">
-   <Image src="/images/logo-virtualcgo.png" alt="Virtual CGO" width={150} height={45} className="h-12 w-auto object-contain" priority />
+   <Image src="/images/logo-virtualcgo.png" alt="Virtual CGO" width={200} height={60} className="h-12 w-auto object-contain" priority />
 </a>
 
           {/* Desktop nav */}

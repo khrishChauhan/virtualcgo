@@ -333,7 +333,7 @@ export default function ContactSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 mt-24 pt-8 border-t border-slate-200/60">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
-            <Image src="/images/logo-virtualcgo.png" alt="Virtual CGO" width={150} height={45} className="h-12 w-auto object-contain" />
+            <Image src="/images/logo-virtualcgo.png" alt="Virtual CGO" width={250} height={75} className="h-12 w-auto object-contain" />
           </div>
           <div className="text-center sm:text-left">
             <p className="text-slate-400 text-[13px] font-medium">
