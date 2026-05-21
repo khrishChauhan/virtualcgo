@@ -323,30 +323,35 @@ export default function HeroSection() {
             TRUSTED BY FAST-GROWING BRANDS ACROSS INDIA
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 md:gap-x-16 opacity-50 hover:opacity-75 transition-opacity duration-300">
-            {/* Logo 1 */}
+            {/* Logo 1 - Astro Bibhash */}
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-md bg-blue-600 flex items-center justify-center text-white font-black text-[12px] shadow-sm">N</div>
-              <span className="text-slate-800 font-bold text-[13.5px] tracking-tight">NovaCorp</span>
+              <div className="w-6 h-6 rounded-md bg-orange-500 flex items-center justify-center text-white font-black text-[12px] shadow-sm">A</div>
+              <span className="text-slate-800 font-bold text-[13.5px] tracking-tight">Astro Bibhash</span>
             </div>
-            {/* Logo 2 */}
+            {/* Logo 2 - Sysfo Software */}
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-md bg-emerald-600 flex items-center justify-center text-white font-black text-[12px] shadow-sm">P</div>
-              <span className="text-slate-800 font-bold text-[13.5px] tracking-tight">PulseFit</span>
+              <div className="w-6 h-6 rounded-md bg-indigo-900 flex items-center justify-center text-white font-black text-[12px] shadow-sm">S</div>
+              <span className="text-slate-800 font-bold text-[13.5px] tracking-tight">Sysfo Software</span>
             </div>
-            {/* Logo 3 */}
+            {/* Logo 3 - Click Aarambh */}
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-md bg-purple-600 flex items-center justify-center text-white font-black text-[12px] shadow-sm">A</div>
-              <span className="text-slate-800 font-bold text-[13.5px] tracking-tight">ArcadeMedia</span>
+              <div className="w-6 h-6 rounded-md bg-emerald-700 flex items-center justify-center text-white font-black text-[12px] shadow-sm">C</div>
+              <span className="text-slate-800 font-bold text-[13.5px] tracking-tight">Click Aarambh</span>
             </div>
-            {/* Logo 4 */}
+            {/* Logo 4 - Uindiaux */}
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-md bg-blue-500 flex items-center justify-center text-white font-black text-[12px] shadow-sm">O</div>
-              <span className="text-slate-800 font-bold text-[13.5px] tracking-tight">OrbitTech</span>
+              <div className="w-6 h-6 rounded-md bg-indigo-600 flex items-center justify-center text-white font-black text-[12px] shadow-sm">U</div>
+              <span className="text-slate-800 font-bold text-[13.5px] tracking-tight">Uindiaux</span>
             </div>
-            {/* Logo 5 */}
+            {/* Logo 5 - Stallion */}
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-md bg-indigo-600 flex items-center justify-center text-white font-black text-[12px] shadow-sm">V</div>
-              <span className="text-slate-800 font-bold text-[13.5px] tracking-tight">VertexAI</span>
+              <div className="w-6 h-6 rounded-md bg-rose-600 flex items-center justify-center text-white font-black text-[12px] shadow-sm">S</div>
+              <span className="text-slate-800 font-bold text-[13.5px] tracking-tight">Stallion</span>
+            </div>
+            {/* Logo 6 - Vote Victory */}
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-md bg-emerald-900 flex items-center justify-center text-white font-black text-[12px] shadow-sm">V</div>
+              <span className="text-slate-800 font-bold text-[13.5px] tracking-tight">Vote Victory</span>
             </div>
           </div>
         </motion.div>
