@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const fadeUp = (delay = 0) => ({
   hidden:  { opacity: 0, y: 22 },
@@ -61,6 +61,83 @@ const contactCards = [
 export default function ContactSection() {
   const ref    = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [businessName, setBusinessName] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string | null;
+  }>({ type: null, message: null });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Basic Validation
+    if (!name.trim()) {
+      setStatus({ type: "error", message: "Name is required." });
+      return;
+    }
+    if (!email.trim()) {
+      setStatus({ type: "error", message: "Email is required." });
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setStatus({ type: "error", message: "Please enter a valid email address." });
+      return;
+    }
+    if (!message.trim()) {
+      setStatus({ type: "error", message: "Message/project details are required." });
+      return;
+    }
+
+    setLoading(true);
+    setStatus({ type: null, message: null });
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/khrishchauhan@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          _captcha: "false",
+          _template: "table",
+          _subject: "New VirtualCGO Contact Form Submission",
+          _autoresponse: "Thank you for contacting VirtualCGO. We have received your submission and will contact you soon.",
+          Name: name,
+          Email: email,
+          "Business Name": businessName,
+          Message: message,
+        })
+      });
+
+      if (response.ok) {
+        setStatus({
+          type: "success",
+          message: "Thank you! Your message has been sent successfully. We will get back to you soon."
+        });
+        setName("");
+        setEmail("");
+        setBusinessName("");
+        setMessage("");
+      } else {
+        throw new Error("Form submission failed.");
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus({
+        type: "error",
+        message: "Oops! Something went wrong. Please try again or reach out to us directly."
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section
@@ -163,13 +240,26 @@ export default function ContactSection() {
             >
               <p className="text-slate-900 font-semibold text-[16px] mb-6 tracking-[-0.01em]">Send us a message</p>
 
-              <form className="flex flex-col gap-5" onSubmit={(e) => e.preventDefault()}>
+              <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+                {status.message && (
+                  <div className={`p-4 rounded-xl text-[14px] font-semibold border ${
+                    status.type === "success" 
+                      ? "bg-emerald-50 border-emerald-100 text-emerald-800" 
+                      : "bg-rose-50 border-rose-100 text-rose-800"
+                  }`}>
+                    {status.message}
+                  </div>
+                )}
+
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
                     <label className="text-[12.5px] font-semibold text-slate-600 tracking-wide">Name</label>
                     <input
                       type="text"
                       placeholder="Aryan Sharma"
+                      required
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       className="w-full px-4 py-3 rounded-xl bg-[#f7f9ff] border border-slate-200/70 text-[14.5px] text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#abc4ff] focus:ring-2 focus:ring-[#abc4ff]/30 transition-all duration-200"
                     />
                   </div>
@@ -178,6 +268,9 @@ export default function ContactSection() {
                     <input
                       type="email"
                       placeholder="aryan@business.com"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="w-full px-4 py-3 rounded-xl bg-[#f7f9ff] border border-slate-200/70 text-[14.5px] text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#abc4ff] focus:ring-2 focus:ring-[#abc4ff]/30 transition-all duration-200"
                     />
                   </div>
@@ -188,6 +281,8 @@ export default function ContactSection() {
                   <input
                     type="text"
                     placeholder="Your Business"
+                    value={businessName}
+                    onChange={(e) => setBusinessName(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl bg-[#f7f9ff] border border-slate-200/70 text-[14.5px] text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#abc4ff] focus:ring-2 focus:ring-[#abc4ff]/30 transition-all duration-200"
                   />
                 </div>
@@ -197,20 +292,34 @@ export default function ContactSection() {
                   <textarea
                     rows={4}
                     placeholder="I need a website for my restaurant in Mumbai..."
+                    required
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl bg-[#f7f9ff] border border-slate-200/70 text-[14.5px] text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#abc4ff] focus:ring-2 focus:ring-[#abc4ff]/30 transition-all duration-200 resize-none"
                   />
                 </div>
 
                 <motion.button
                   type="submit"
-                  whileHover={{ scale: 1.015 }}
-                  whileTap={{ scale: 0.985 }}
-                  className="btn-primary mt-1 w-full py-3.5 rounded-xl text-white font-semibold text-[15px] flex items-center justify-center gap-2.5"
+                  disabled={loading}
+                  whileHover={loading ? undefined : { scale: 1.015 }}
+                  whileTap={loading ? undefined : { scale: 0.985 }}
+                  className={`btn-primary mt-1 w-full py-3.5 rounded-xl text-white font-semibold text-[15px] flex items-center justify-center gap-2.5 ${
+                    loading ? "opacity-75 cursor-not-allowed" : ""
+                  }`}
                 >
-                  Send Message
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M2.5 13.5L13.5 2.5M13.5 2.5H7.5M13.5 2.5V8.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
+                  {loading ? "Sending..." : "Send Message"}
+                  {!loading && (
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M2.5 13.5L13.5 2.5M13.5 2.5H7.5M13.5 2.5V8.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  )}
+                  {loading && (
+                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                  )}
                 </motion.button>
 
                 <p className="text-slate-400 text-[12px] text-center font-medium">
