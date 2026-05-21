@@ -157,13 +157,11 @@ export default function PricingSection() {
                 </div>
                 
                 {/* Extra limited coupon offer strip */}
-                <div className="flex items-center gap-1.5 mt-1.5 relative z-10 p-3 px-4 rounded-xl bg-emerald-50/70 border border-emerald-200/50 w-fit">
-                  <div className="text-[12.5px] font-bold text-emerald-800 flex items-center gap-1.5">
-                    <svg className="w-4.5 h-4.5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                    Extra Coupon Code Applied
-                  </div>
+                <div className="inline-flex items-center gap-1.5 mt-1 relative z-10 px-2.5 py-1 rounded-lg bg-emerald-50/80 border border-emerald-100/80 text-[12px] font-bold text-emerald-700 w-fit">
+                  <svg className="w-4 h-4 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                  <span>Extra Coupon Code Applied</span>
                 </div>
               </div>
 
