@@ -78,6 +78,20 @@ const logoDesigns = [
     gradient: "from-indigo-600 to-blue-500",
     letter: "U" 
   },
+  { 
+    id: "logo-vote-victory", 
+    name: "Vote Victory", 
+    image: "/images/logo-vote-victory.png", 
+    gradient: "from-emerald-900 via-zinc-900 to-slate-900",
+    letter: "V" 
+  },
+  { 
+    id: "logo-stallion", 
+    name: "Stallion", 
+    image: "/images/logo-stallion.png", 
+    gradient: "from-rose-600 via-rose-500 to-slate-700",
+    letter: "S" 
+  },
 ];
 
 
@@ -330,7 +344,7 @@ export default function ShowcaseSection() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-4xl mx-auto"
+              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4"
             >
               {logoDesigns.map((logo, i) => (
                 <LogoCard key={logo.id} logo={logo} index={i} />
