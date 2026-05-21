@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const navLinks = [
   { label: "About",    href: "#about" },
@@ -37,18 +38,8 @@ export default function Navbar() {
         >
           {/* Logo */}
           <a href="#home" className="flex items-center gap-2.5 group" aria-label="Virtual CGO home">
-            <div className="relative w-8 h-8 flex-shrink-0">
-              <div className="w-8 h-8 rounded-xl gradient-blue flex items-center justify-center shadow-blue">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M2 8L6 12L14 4" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <div className="absolute inset-0 rounded-xl gradient-blue opacity-0 group-hover:opacity-40 blur-sm transition-opacity duration-300" />
-            </div>
-            <span className="text-slate-800 font-semibold text-[15px] tracking-[-0.01em]">
-              Virtual <span className="text-blue-600">CGO</span>
-            </span>
-          </a>
+  <Image src="/images/logo-virtualcgo.png" alt="Virtual CGO" width={120} height={36} className="h-8 w-auto object-contain" priority />
+</a>
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-0.5" aria-label="Main navigation">

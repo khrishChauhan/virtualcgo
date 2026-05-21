@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import Image from "next/image";
 
 const fadeUp = (delay = 0) => ({
   hidden:  { opacity: 0, y: 22 },
@@ -98,22 +99,18 @@ export default function ContactSection() {
     setStatus({ type: null, message: null });
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/connect@virtualcgo.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          _captcha: "false",
-          _template: "table",
-          _subject: "New VirtualCGO Contact Form Submission",
-          _autoresponse: "Thank you for contacting VirtualCGO. We have received your submission and will contact you soon.",
-          Name: name,
-          Email: email,
-          "Business Name": businessName,
-          Message: message,
-        })
+      const formData = new FormData();
+      formData.append('_captcha', 'false');
+      formData.append('_template', 'table');
+      formData.append('_subject', 'New VirtualCGO Contact Form Submission');
+      formData.append('_autoresponse', 'Thank you for contacting VirtualCGO. We have received your submission and will contact you soon.');
+      formData.append('Name', name);
+      formData.append('Email', email);
+      formData.append('Business Name', businessName);
+      formData.append('Message', message);
+      const response = await fetch('https://formsubmit.co/ajax/connect@virtualcgo.com', {
+        method: 'POST',
+        body: formData,
       });
 
       if (response.ok) {
@@ -336,14 +333,7 @@ export default function ContactSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 mt-24 pt-8 border-t border-slate-200/60">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
-            <div className="w-6 h-6 rounded-lg gradient-blue flex items-center justify-center shadow-blue">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M2 6L4.5 8.5L10 3" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <span className="text-slate-500 text-[13.5px] font-medium tracking-[-0.01em]">
-              Virtual <span className="text-blue-600 font-semibold">CGO</span>
-            </span>
+            <Image src="/images/logo-virtualcgo.png" alt="Virtual CGO" width={100} height={30} className="h-6 w-auto object-contain" />
           </div>
           <div className="text-center sm:text-left">
             <p className="text-slate-400 text-[13px] font-medium">
