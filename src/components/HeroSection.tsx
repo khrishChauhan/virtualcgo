@@ -353,6 +353,11 @@ export default function HeroSection() {
               <div className="w-6 h-6 rounded-md bg-emerald-900 flex items-center justify-center text-white font-black text-[12px] shadow-sm">V</div>
               <span className="text-slate-800 font-bold text-[13.5px] tracking-tight">Vote Victory</span>
             </div>
+            {/* Logo 7 - Vada Consultancy */}
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-md bg-[#ff6b00] flex items-center justify-center text-white font-black text-[12px] shadow-sm">V</div>
+              <span className="text-slate-800 font-bold text-[13.5px] tracking-tight">Vada Consultancy</span>
+            </div>
           </div>
         </motion.div>
       </div>

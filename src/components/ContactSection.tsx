@@ -98,7 +98,7 @@ export default function ContactSection() {
     setStatus({ type: null, message: null });
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/khrishchauhan@gmail.com", {
+      const response = await fetch("https://formsubmit.co/ajax/connect@virtualcgo.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

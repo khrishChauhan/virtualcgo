@@ -22,17 +22,17 @@ const websiteDemos = [
     buttonText: "Visit Live Site"
   },
   {
-    id: "demo-furniture",
-    name: "E-commerce Furniture Store",
-    category: "E-commerce Store",
-    url: "embroideryroomz.com",
-    link: "https://embroideryroomz.com/",
-    description: "Handcrafted cushions, home textiles, and premium decor accessories designed to transform elegant living spaces.",
-    image: "/images/furniture-store.png",
-    gradient: "from-teal-800 via-emerald-900 to-amber-700",
-    categoryColor: "text-emerald-600",
-    categoryBg: "bg-emerald-50",
-    buttonText: "Visit Live Store"
+    id: "demo-vada",
+    name: "Vada Consultancy",
+    category: "Client Website",
+    url: "vadacounsultancy.com",
+    link: "https://vadacounsultancy.com/",
+    description: "Premium educational advisory portal in India offering expert guidance for Medical, Engineering, and Management admissions.",
+    image: "/images/vada-consultancy-hero.png",
+    gradient: "from-[#ff6b00] via-[#0f172a] to-blue-900",
+    categoryColor: "text-orange-600",
+    categoryBg: "bg-orange-50",
+    buttonText: "Visit Live Site"
   },
   {
     id: "demo-studio-mira",
@@ -91,6 +91,13 @@ const logoDesigns = [
     image: "/images/logo-stallion.png", 
     gradient: "from-rose-600 via-rose-500 to-slate-700",
     letter: "S" 
+  },
+  { 
+    id: "logo-vada-consultancy", 
+    name: "Vada Consultancy", 
+    image: "/images/logo-vada-consultancy.png", 
+    gradient: "from-orange-600 to-blue-900",
+    letter: "V" 
   },
 ];
 
@@ -209,7 +216,7 @@ function LogoCard({ logo, index }: { logo: typeof logoDesigns[0]; index: number 
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ y: -4, scale: 1.02 }}
-      className="group bg-white border border-slate-200/70 rounded-2xl p-6 flex flex-col items-center gap-3 shadow-card hover:shadow-card-hover hover:border-blue-200/50 transition-all duration-300 cursor-pointer w-full text-center"
+      className="group bg-white border border-slate-200/70 rounded-2xl p-6 flex flex-col items-center gap-3 shadow-card hover:shadow-card-hover hover:border-blue-200/50 transition-all duration-300 cursor-pointer w-[calc(50%-8px)] sm:w-[calc(33.33%-11px)] lg:w-[calc(14.28%-14px)] text-center"
     >
       {/* Logo icon */}
       <div className="relative">
@@ -344,7 +351,7 @@ export default function ShowcaseSection() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4"
+              className="flex flex-wrap justify-center gap-4 w-full"
             >
               {logoDesigns.map((logo, i) => (
                 <LogoCard key={logo.id} logo={logo} index={i} />
