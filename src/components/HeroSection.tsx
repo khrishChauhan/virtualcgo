@@ -335,8 +335,8 @@ export default function HeroSection() {
             </div>
             {/* Logo 3 - Click Aarambh */}
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-md bg-emerald-700 flex items-center justify-center text-white font-black text-[12px] shadow-sm">C</div>
-              <span className="text-slate-800 font-bold text-[13.5px] tracking-tight">Click Aarambh</span>
+              <div className="w-6 h-6 rounded-md bg-[#84cc16] flex items-center justify-center text-white font-black text-[12px] shadow-sm">C</div>
+              <span className="text-slate-800 font-bold text-[13.5px] tracking-tight">Click Aarambh Ventures</span>
             </div>
             {/* Logo 4 - Uindiaux */}
             <div className="flex items-center gap-2">

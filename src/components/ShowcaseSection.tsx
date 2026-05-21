@@ -66,9 +66,9 @@ const logoDesigns = [
   },
   { 
     id: "logo-click-aarambh", 
-    name: "Click Aarambh", 
+    name: "Click Aarambh Ventures", 
     image: "/images/logo-click-aarambh.png", 
-    gradient: "from-emerald-700 to-teal-800",
+    gradient: "from-[#84cc16] via-[#0f172a] to-black",
     letter: "C" 
   },
   { 
